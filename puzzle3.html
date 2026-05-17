@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="styles.css" rel="stylesheet">
+</head>
+    <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">WebSiteName</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">Timer</a></li>
+                    <li><a href="puzzle1.html">Page 1</a></li>
+                    <li><a href="puzzle2.html">Page 2</a></li>
+                    <li><a class = "active" href="puzzle3.html">Page 3</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class = "count" href="#"></a></li>
+                </ul>
+            </div>
+        </nav>
+        <button id = "runner"> Click Me!</button>
+        <script>
+        const button = document.getElementById("runner");
+        let taunts = ["too slow", "try hitting me", "close"];
+        function moveButton()
+        {
+            const maxX = window.innerWidth - button.offsetWidth;
+            const maxY = window.innerHeight - button.offsetHeight;
+
+            const x = Math.random() * maxX;
+            const y = Math.random() * maxY;
+            let thing = Math.floor(x %3);
+            button.innerText = taunts[thing];
+
+            button.style.left = `${x}px`;
+            button.style.top = `${y}px`;
+        }
+        setInterval(moveButton, 700);
+        moveButton();
+
+        button.addEventListener("click", function()
+        {
+            let track = parseInt(localStorage.getItem("gameState"));
+            localStorage.setItem("gameState", track + 1)
+        });
+    </script>
+    <script src="timer.js" defer></script>
+    </body>
+
