@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+    <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">idk</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">Timer</a></li>
+                    <li><a href="puzzle1.html">Page 1</a></li>
+                    <li class ="active"><a href="puzzle2.html">Page 2</a></li>
+                    <li><a href="puzzle3.html">Page 3</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class = "count" href="#"></a></li>
+                </ul>
+            </div>
+        </nav>
+        <h1><p id = "thing">Easy trick, right?</p></h1>
+        <input type = "text" id = "textBox"  name = "sorry, no hints here">
+        <button id = "checkAnswer">Check Answer</button>
+        <script src="timer.js" defer></script>
+        <script>
+            let goober = document.getElementById("checkAnswer");
+            let otherThing = document.getElementById("thing");
+            function checkAnswer( text)
+            {
+                let cText = text.toLowerCase()
+                let check = parseInt(localStorage.getItem("color"));
+                switch(check) //just realized I could've just used an array...well, we're here now!
+                {
+                    case 0:
+                        if(cText == "green")
+                        {
+                            let track = parseInt(localStorage.getItem("gameState"));
+                            localStorage.setItem("gameState", track + 1)
+                            return true;
+
+                        }
+
+                        break;
+                    case 1:
+                        if(cText == "orange")
+                        {
+                            let track = parseInt(localStorage.getItem("gameState"));
+                        localStorage.setItem("gameState", track + 1)
+                            return true;
+
+                        }
+
+                        break;
+                    case 2:
+                        if(cText == "red")
+                        {
+                            let track = parseInt(localStorage.getItem("gameState"));
+                        localStorage.setItem("gameState", track + 1)
+                            return true;
+                        }
+
+                        break;
+                    default:
+                        return false;
+                        break;
+                }
+            }
+            goober.addEventListener("click", function()
+            {
+                let textBox = document.getElementById("textBox");
+                let answer = textBox.value;
+                if(checkAnswer(answer))
+                {
+                    otherThing.innerText = "See? Easy"
+                }
+                else
+                {
+                    otherThing.innerHTML = "That expression doesn't <strong>complement</strong> your face."
+                }
+            });
+        </script>
+    </body>
