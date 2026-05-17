@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+    <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">WebSiteName</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">Timer</a></li>
+                    <li class="active"><a href="puzzle1.html">Page 1</a></li>
+                    <li><a href="puzzle2.html">Page 2</a></li>
+                    <li><a href="puzzle3.html">Page 3</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class = "count" href="#"></a></li>
+                </ul>
+            </div>
+        </nav>
+        <button id = "sayColor">Hello</button>
+        <script>
+            let button = document.getElementById("sayColor");
+            if(!localStorage.getItem("color") || localStorage.getItem("hasReset") ==="true")
+            {
+                localStorage.removeItem("color");
+                localStorage.setItem("hasReset", "false")
+                let roll = Math.trunc((Math.random() * 3));
+                localStorage.setItem("color", roll);
+            }
+            switch(parseInt(localStorage.getItem("color")))
+            {
+                case 0:
+                    button.style.setProperty("background-color", "red", "important");
+                    break;
+                case 1:
+                    button.style.setProperty("background-color", "blue", "important");
+                    button.style.setProperty("color", "white", "important");
+                    break;
+                default:
+                    button.style.setProperty("background-color", "green", "important");
+                    button.style.setProperty("color", "white", "important");
+                    break;
+            }
+        </script>
+        <script src="timer.js"></script>
+    </body>
